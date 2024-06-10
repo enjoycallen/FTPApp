@@ -1,5 +1,5 @@
 namespace FTPClient
-{
+{ 
     internal static class Program
     {
         /// <summary>
