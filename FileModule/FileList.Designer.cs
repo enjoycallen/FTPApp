@@ -67,6 +67,7 @@
             fileListView.UseCompatibleStateImageBehavior = false;
             fileListView.View = View.Details;
             fileListView.ItemActivate += fileListView_ItemActivate;
+            fileListView.KeyDown += fileListView_KeyDown;
             fileListView.MouseUp += fileListView_MouseUp;
             // 
             // name

@@ -164,5 +164,25 @@ namespace FTPClient
                 }
             }
         }
+
+        private void fileListView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Back)
+            {
+                BackToParent();
+            }
+            else if (e.KeyCode == Keys.F5)
+            {
+                Refresh();
+            }
+            else if (e.KeyCode == Keys.Delete)
+            {
+                var selectedItems = fileListView.SelectedItems;
+                if (selectedItems.Count == 0) return;
+
+                var item = selectedItems[0].Tag as FileListItem ?? throw new Exception();
+                Remove(item);
+            }
+        }
     }
 }

@@ -21,7 +21,7 @@ namespace FTPClient
 
         }
 
-        
+
         public ListViewItem AddItem(string localFile, string direction, string remoteFile, string size, string status)
         {
             var item = transferListView.Items.Add(localFile);
@@ -32,7 +32,7 @@ namespace FTPClient
             return item;
         }
 
-        
+
         public async void Upload(string localFile, string remoteFile, size_type size, Action update)
         {
             var item = AddItem(localFile, "->", remoteFile, size.ToString(), "上传中");
@@ -106,6 +106,11 @@ namespace FTPClient
                     transferListView.Items.Remove(item);
                 }
             }
+        }
+
+        private void 清空已完成任务ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clear();
         }
     }
 }

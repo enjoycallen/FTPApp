@@ -8,7 +8,7 @@
             传输ToolStripMenuItem.Text = "下载";
         }
 
-        public void Connect()
+        public async void Connect()
         {
             Refresh();
         }
@@ -60,7 +60,17 @@
         {
             if (Client == null) throw new NullClient("RemoteFileList.Remove");
             if (!Client.IsConnected) throw new ConnectionNotExisted("RemoteFileList.Remove");
-            Client.Remove(item);
+            try
+            {
+                if (MessageBox.Show($"要删除远程文件{item.FullName}吗？", "FTPClient", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    Client.Remove(item);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

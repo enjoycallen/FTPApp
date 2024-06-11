@@ -60,7 +60,7 @@
             hostTextBox.Name = "hostTextBox";
             hostTextBox.Size = new Size(200, 23);
             hostTextBox.TabIndex = 1;
-            hostTextBox.Text = "localhost";
+            hostTextBox.Text = "192.168.43.105";
             // 
             // portTextBox
             // 

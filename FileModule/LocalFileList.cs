@@ -36,8 +36,11 @@
 
         public override void BackToParent()
         {
-            var parent = Directory.GetParent(CurrentDirectory)?.FullName ?? "";
-            ChangeDirectory(parent);
+            if (!IsRoot)
+            {
+                var parent = Directory.GetParent(CurrentDirectory)?.FullName ?? "";
+                ChangeDirectory(parent);
+            }
         }
 
         public override void Transfer(FileListItem item)
@@ -49,7 +52,17 @@
 
         public override void Remove(FileListItem item)
         {
-            File.Delete(item.FullName);
+            try
+            {
+                if (MessageBox.Show($"要删除本地文件{item.FullName}吗？", "FTPClient", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    File.Delete(item.FullName);
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "FTPClient");
+            }
             Refresh();
         }
     }
